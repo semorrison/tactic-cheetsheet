@@ -170,7 +170,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="by_contra"><a class="header" href="#by_contra">by_contra</a></h1>
-<p><code>by_contra</code> は，背理法を使いたいときに役立つタクティクです．<code>Mathlib.Tactic.ByContra</code> に依存しています．</p>
+<p>needs: <code>import Mathlib.Tactic.ByContra</code></p>
+<p><code>by_contra</code> は，背理法を使いたいときに役立つタクティクです．</p>
 <p>ゴールが <code>⊢ P</code> であるときに <code>by_contra h</code> を実行すると，<code>h : ¬ P</code> がローカルコンテキストに追加されて，同時にゴールが <code>⊢ False</code> になります．</p>
 <pre><code class="language-lean">example (h: ¬Q → ¬P) : P → Q := by
   -- `P` であると仮定する

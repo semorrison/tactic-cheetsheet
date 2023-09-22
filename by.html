@@ -183,7 +183,8 @@ example (hPQ : P → Q) (hQR : Q → R) : P → R := by
   exact hQR (hPQ hP)
 </code></pre>
 <h2 id="by-1"><a class="header" href="#by-1">by?</a></h2>
-<p>これは <code>Std.Tactic.ShowTerm</code> に依存した例ですが，<code>by?</code> を使えばタクティクモードで構成した証明を直接構成した証明に変換してくれます．</p>
+<p>needs: <code>import Std.Tactic.ShowTerm</code></p>
+<p><code>by?</code> を使うとタクティクモードで構成した証明を直接構成した証明に変換してくれます．</p>
 <pre><code class="language-lean">example (hPQ : P → Q) (hQR : Q → R) : P → R := by?
   -- `Try this: fun hP =&gt; hQR (hPQ hP)` と提案してくれる
   intro hP

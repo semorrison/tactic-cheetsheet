@@ -200,7 +200,8 @@ example (n : Nat) : 0 &lt; fac n := by
     positivity
 </code></pre>
 <h2 id="induction-1"><a class="header" href="#induction-1">induction'</a></h2>
-<p><code>Mathlib.Tactic.Cases</code> 依存のタクティクですが，<code>induction'</code> というタクティクもあります．こちらは箇条書きによる，より簡潔な書き方が可能です．</p>
+<p>needs: <code>import Mathlib.Tactic.Cases</code></p>
+<p><code>induction'</code> というタクティクもあります．こちらは箇条書きによる，より簡潔な書き方が可能です．</p>
 <pre><code class="language-lean">example (n : Nat) : 0 &lt; fac n := by
   -- `ih` は帰納法の仮定
   -- `k` は `ih` に登場する変数

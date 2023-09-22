@@ -170,7 +170,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="left-right"><a class="header" href="#left-right">left, right</a></h1>
-<p>ゴールが <code>⊢ P ∨ Q</code> であるとき，<code>left</code> はゴールを <code>⊢ P</code> に，<code>right</code> はゴールを <code>⊢ Q</code> に変えます．<code>Mathlib.Tactic.LeftRight</code> に依存しているタクティクです．</p>
+<p>needs: <code>import Mathlib.Tactic.LeftRight</code></p>
+<p>ゴールが <code>⊢ P ∨ Q</code> であるとき，<code>left</code> はゴールを <code>⊢ P</code> に，<code>right</code> はゴールを <code>⊢ Q</code> に変えます．</p>
 <pre><code class="language-lean">example (hP: P) : P ∨ Q := by
   left
   assumption

@@ -170,7 +170,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="aesop"><a class="header" href="#aesop">aesop</a></h1>
-<p><code>aesop</code> は，<code>intro</code> や <code>simp</code> を使用してルーチンな証明を自動で行おうとします．<code>Aesop</code> ライブラリに依存しています．</p>
+<p>needs: <code>import Aesop</code></p>
+<p><code>aesop</code> は，<code>intro</code> や <code>simp</code> を使用してルーチンな証明を自動で行おうとします．</p>
 <pre><code class="language-lean">-- 合成 `g ∘ f` が単射なら，`f` も単射
 example {f : X → Y} {g : Y → Z} (hgfinj : Injective (g ∘ f)) : Injective f := by
   rw [Injective]

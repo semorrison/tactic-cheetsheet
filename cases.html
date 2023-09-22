@@ -200,7 +200,8 @@
     exact hQR hQ
 </code></pre>
 <h2 id="cases-1"><a class="header" href="#cases-1">cases'</a></h2>
-<p><code>Mathlib.Tactic.Cases</code> に依存したタクティクですが，<code>cases'</code> を使用すると分解した仮定に簡潔に名前をつけることができます．</p>
+<p>needs: <code>import Mathlib.Tactic.Cases</code></p>
+<p><code>cases'</code> を使用すると分解した仮定に簡潔に名前をつけることができます．</p>
 <pre><code class="language-lean">example : P ∨ Q → (P → R) → (Q → R) → R := by
   intro h hPR hQR
 
@@ -210,7 +211,8 @@
   · apply hQR hQ
 </code></pre>
 <h2 id="rcases"><a class="header" href="#rcases">rcases</a></h2>
-<p><code>Std.Tactic.RCases</code> に依存したタクティクですが，<code>rcases</code> は <code>cases</code> をパターンに従って再帰的(recursive)に適用します．論理和∨以外にも使うことができます．</p>
+<p>needs: <code>import Std.Tactic.RCases</code></p>
+<p><code>rcases</code> は <code>cases</code> をパターンに従って再帰的(recursive)に適用します．論理和∨以外にも使うことができます．</p>
 <pre><code class="language-lean">variable (P Q R : Prop)
 
 example : P ∨ Q → (P → R) → (Q → R) → R := by

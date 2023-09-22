@@ -170,8 +170,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="apply"><a class="header" href="#apply">apply?</a></h1>
-<p><code>apply?</code> は，ゴールを閉じるのに必要な命題をライブラリから検索してきて，提案してくれるタクティクです．<code>Mathlib.Tactic.LibrarySearch</code> に依存しています．</p>
-<pre><code class="language-lean">-- 群順同型は積を保つ
+<p>needs: <code>import Mathlib.Tactic.LibrarySearch</code></p>
+<p><code>apply?</code> は，ゴールを閉じるのに必要な命題をライブラリから検索してきて，提案してくれるタクティクです．</p>
+<pre><code class="language-lean">-- 群準同型は積を保つ
 example [Group G] [Group H] (f : G →* H) (a b : G) :
     f (a * b) = f a * f b := by
     -- `exact MonoidHom.map_mul f a b` を提案してくれる

@@ -176,7 +176,8 @@
 <h2 id="謝辞"><a class="header" href="#謝辞">謝辞</a></h2>
 <p><a href="https://github.com/yuma-mizuno/lean-math-workshop">数学系のためのLean勉強会</a> からいくつかコード例を拝借させていただきました．ありがとうございます．</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="aesop"><a class="header" href="#aesop">aesop</a></h1>
-<p><code>aesop</code> は，<code>intro</code> や <code>simp</code> を使用してルーチンな証明を自動で行おうとします．<code>Aesop</code> ライブラリに依存しています．</p>
+<p>needs: <code>import Aesop</code></p>
+<p><code>aesop</code> は，<code>intro</code> や <code>simp</code> を使用してルーチンな証明を自動で行おうとします．</p>
 <pre><code class="language-lean">-- 合成 `g ∘ f` が単射なら，`f` も単射
 example {f : X → Y} {g : Y → Z} (hgfinj : Injective (g ∘ f)) : Injective f := by
   rw [Injective]
@@ -234,8 +235,9 @@ example (h: P → Q) (hP: P) : Q := by
   apply hP
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="apply-1"><a class="header" href="#apply-1">apply?</a></h1>
-<p><code>apply?</code> は，ゴールを閉じるのに必要な命題をライブラリから検索してきて，提案してくれるタクティクです．<code>Mathlib.Tactic.LibrarySearch</code> に依存しています．</p>
-<pre><code class="language-lean">-- 群順同型は積を保つ
+<p>needs: <code>import Mathlib.Tactic.LibrarySearch</code></p>
+<p><code>apply?</code> は，ゴールを閉じるのに必要な命題をライブラリから検索してきて，提案してくれるタクティクです．</p>
+<pre><code class="language-lean">-- 群準同型は積を保つ
 example [Group G] [Group H] (f : G →* H) (a b : G) :
     f (a * b) = f a * f b := by
     -- `exact MonoidHom.map_mul f a b` を提案してくれる
@@ -268,7 +270,8 @@ example [Group G] [Group H] (f : G →* H) (a b : G) :
     contradiction
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="by_contra"><a class="header" href="#by_contra">by_contra</a></h1>
-<p><code>by_contra</code> は，背理法を使いたいときに役立つタクティクです．<code>Mathlib.Tactic.ByContra</code> に依存しています．</p>
+<p>needs: <code>import Mathlib.Tactic.ByContra</code></p>
+<p><code>by_contra</code> は，背理法を使いたいときに役立つタクティクです．</p>
 <p>ゴールが <code>⊢ P</code> であるときに <code>by_contra h</code> を実行すると，<code>h : ¬ P</code> がローカルコンテキストに追加されて，同時にゴールが <code>⊢ False</code> になります．</p>
 <pre><code class="language-lean">example (h: ¬Q → ¬P) : P → Q := by
   -- `P` であると仮定する
@@ -297,7 +300,8 @@ example (hPQ : P → Q) (hQR : Q → R) : P → R := by
   exact hQR (hPQ hP)
 </code></pre>
 <h2 id="by-1"><a class="header" href="#by-1">by?</a></h2>
-<p>これは <code>Std.Tactic.ShowTerm</code> に依存した例ですが，<code>by?</code> を使えばタクティクモードで構成した証明を直接構成した証明に変換してくれます．</p>
+<p>needs: <code>import Std.Tactic.ShowTerm</code></p>
+<p><code>by?</code> を使うとタクティクモードで構成した証明を直接構成した証明に変換してくれます．</p>
 <pre><code class="language-lean">example (hPQ : P → Q) (hQR : Q → R) : P → R := by?
   -- `Try this: fun hP =&gt; hQR (hPQ hP)` と提案してくれる
   intro hP
@@ -336,7 +340,8 @@ example (hPQ : P → Q) (hQR : Q → R) : P → R := by
     exact hQR hQ
 </code></pre>
 <h2 id="cases-1"><a class="header" href="#cases-1">cases'</a></h2>
-<p><code>Mathlib.Tactic.Cases</code> に依存したタクティクですが，<code>cases'</code> を使用すると分解した仮定に簡潔に名前をつけることができます．</p>
+<p>needs: <code>import Mathlib.Tactic.Cases</code></p>
+<p><code>cases'</code> を使用すると分解した仮定に簡潔に名前をつけることができます．</p>
 <pre><code class="language-lean">example : P ∨ Q → (P → R) → (Q → R) → R := by
   intro h hPR hQR
 
@@ -346,7 +351,8 @@ example (hPQ : P → Q) (hQR : Q → R) : P → R := by
   · apply hQR hQ
 </code></pre>
 <h2 id="rcases"><a class="header" href="#rcases">rcases</a></h2>
-<p><code>Std.Tactic.RCases</code> に依存したタクティクですが，<code>rcases</code> は <code>cases</code> をパターンに従って再帰的(recursive)に適用します．論理和∨以外にも使うことができます．</p>
+<p>needs: <code>import Std.Tactic.RCases</code></p>
+<p><code>rcases</code> は <code>cases</code> をパターンに従って再帰的(recursive)に適用します．論理和∨以外にも使うことができます．</p>
 <pre><code class="language-lean">variable (P Q R : Prop)
 
 example : P ∨ Q → (P → R) → (Q → R) → R := by
@@ -427,8 +433,9 @@ example (hP : P) (hnP : ¬ P) : Q := by contradiction
   exists 2
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ext"><a class="header" href="#ext">ext</a></h1>
+<p>needs: <code>import Std.Tactic.Ext</code></p>
 <p>数学では集合 <code>A, B ⊂ α</code> について <code>A = B</code> を示すときに <code>x ∈ A</code> と <code>x ∈ B</code> が同値であることを示すのが常套手段として行われますが，<code>ext</code> はそういうことを行うタクティクです．</p>
-<p><code>Std.Tactic.Ext</code> に依存しているタクティクです．<code>@[ext]</code> で登録されたルールを使用するため，集合の等式 <code>A = B</code> を示すときは <code>Mathlib.Data.SetLike.Basic</code> も必要です．</p>
+<p><code>@[ext]</code> で登録されたルールを使用するため，集合の等式 <code>A = B</code> を示すときは <code>Mathlib.Data.SetLike.Basic</code> も必要です．</p>
 <pre><code class="language-lean">variable {α : Type}
 
 -- `s` と `t` は `α` の部分集合
@@ -524,7 +531,8 @@ example (n : Nat) : 0 &lt; fac n := by
     positivity
 </code></pre>
 <h2 id="induction-1"><a class="header" href="#induction-1">induction'</a></h2>
-<p><code>Mathlib.Tactic.Cases</code> 依存のタクティクですが，<code>induction'</code> というタクティクもあります．こちらは箇条書きによる，より簡潔な書き方が可能です．</p>
+<p>needs: <code>import Mathlib.Tactic.Cases</code></p>
+<p><code>induction'</code> というタクティクもあります．こちらは箇条書きによる，より簡潔な書き方が可能です．</p>
 <pre><code class="language-lean">example (n : Nat) : 0 &lt; fac n := by
   -- `ih` は帰納法の仮定
   -- `k` は `ih` に登場する変数
@@ -584,7 +592,8 @@ example (n : Nat) : 0 &lt; fac n := by
   contradiction
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="left-right"><a class="header" href="#left-right">left, right</a></h1>
-<p>ゴールが <code>⊢ P ∨ Q</code> であるとき，<code>left</code> はゴールを <code>⊢ P</code> に，<code>right</code> はゴールを <code>⊢ Q</code> に変えます．<code>Mathlib.Tactic.LeftRight</code> に依存しているタクティクです．</p>
+<p>needs: <code>import Mathlib.Tactic.LeftRight</code></p>
+<p>ゴールが <code>⊢ P ∨ Q</code> であるとき，<code>left</code> はゴールを <code>⊢ P</code> に，<code>right</code> はゴールを <code>⊢ Q</code> に変えます．</p>
 <pre><code class="language-lean">example (hP: P) : P ∨ Q := by
   left
   assumption
@@ -605,7 +614,8 @@ example (x : Nat) : x = x := by rfl
 example (P : Prop) : P = P := by rfl
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ring"><a class="header" href="#ring">ring</a></h1>
-<p><code>ring</code> は，可換環の等式を示します．<code>Mathlib.Tactic.Ring</code> に依存しています．</p>
+<p>needs: <code>import Mathlib.Tactic.Ring</code></p>
+<p><code>ring</code> は，可換環の等式を示します．</p>
 <pre><code class="language-lean">example : (x + y) ^ 2 = x ^ 2 + 2 * x * y + y ^ 2 := by
   ring
 </code></pre>
