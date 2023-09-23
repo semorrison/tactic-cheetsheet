@@ -228,14 +228,6 @@ example (hn: ¬ P) (hP: P) : False := by
 </code></pre>
 <h2 id="よくあるエラー"><a class="header" href="#よくあるエラー">よくあるエラー</a></h2>
 <p><code>apply</code> には引数が必須なのですが，省略しても近くにエラーが出ません．一般に，構文的に間違った証明を書いた場合には，エラーがわかりやすい場所に出てくれる保証はありません．</p>
-<pre><code class="language-lean">example (h: P → Q) : ¬Q → ¬P := by
-  -- 引数は必須なので間違っているが，エラーが近くに出ない
-  apply
-
--- ここにエラーが出る
-example (hP: P) : P := by
-  exact hP
-</code></pre>
 <h2 id="関連するタクティク"><a class="header" href="#関連するタクティク">関連するタクティク</a></h2>
 <h3 id="exact"><a class="header" href="#exact"><a href="./exact.html">exact</a></a></h3>
 <p><code>exact</code> の代わりに <code>apply</code> を使うことができます．</p>
@@ -617,6 +609,16 @@ example (n : Nat) : 0 &lt; fac n := by
 <p>needs: <code>import Mathlib.Tactic.Linarith</code></p>
 <p><code>linarith</code> は線形算術(linear arithmetic)からその名前があると考えられるタクティクです．ローカルコンテキストの仮定を読んで，線形な不等式を導くことができます．</p>
 <pre><code class="language-lean">example (h1 : 2 * x &lt; 3 * y) (h2 : -4 * x + 2 * z &lt; 0): 12 * y - 4 * z ≥ 0 := by
+  linarith
+</code></pre>
+<p><code>linarith</code> はローカルコンテキストを読み取ってくれるので，<code>linarith</code> が通らないとき補題を追加してあげると通るようになることがあります．</p>
+<pre><code class="language-lean">example : id x ≤ x := by
+  -- `linarith` で示すことはできない
+  try linarith
+
+  have : id x = x := rfl
+
+  -- `id x = x` だと教えてあげると `linarith` で示せる
   linarith
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rel"><a class="header" href="#rel">rel</a></h1>

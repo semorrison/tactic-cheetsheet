@@ -175,6 +175,16 @@
 <pre><code class="language-lean">example (h1 : 2 * x &lt; 3 * y) (h2 : -4 * x + 2 * z &lt; 0): 12 * y - 4 * z ≥ 0 := by
   linarith
 </code></pre>
+<p><code>linarith</code> はローカルコンテキストを読み取ってくれるので，<code>linarith</code> が通らないとき補題を追加してあげると通るようになることがあります．</p>
+<pre><code class="language-lean">example : id x ≤ x := by
+  -- `linarith` で示すことはできない
+  try linarith
+
+  have : id x = x := rfl
+
+  -- `id x = x` だと教えてあげると `linarith` で示せる
+  linarith
+</code></pre>
 
                     </main>
 
