@@ -171,6 +171,7 @@
                     <main>
                         <h1 id="ext"><a class="header" href="#ext">ext</a></h1>
 <p>needs: <code>import Std.Tactic.Ext</code></p>
+<p>named after: 外延性(extensionality)</p>
 <p>数学では集合 <code>A, B ⊂ α</code> について <code>A = B</code> を示すときに <code>x ∈ A</code> と <code>x ∈ B</code> が同値であることを示すのが常套手段として行われますが，<code>ext</code> はそういうことを行うタクティクです．</p>
 <p><code>@[ext]</code> で登録されたルールを使用するため，集合の等式 <code>A = B</code> を示すときは <code>Mathlib.Data.SetLike.Basic</code> も必要です．</p>
 <pre><code class="language-lean">variable {α : Type}

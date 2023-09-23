@@ -171,7 +171,8 @@
                     <main>
                         <h1 id="linarith"><a class="header" href="#linarith">linarith</a></h1>
 <p>needs: <code>import Mathlib.Tactic.Linarith</code></p>
-<p><code>linarith</code> は線形算術(linear arithmetic)からその名前があると考えられるタクティクです．ローカルコンテキストの仮定を読んで，線形な不等式を導くことができます．</p>
+<p>named after: 線形算術(linear arithmetic)</p>
+<p><code>linarith</code> は線形な不等式を導くことができます．</p>
 <pre><code class="language-lean">example (h1 : 2 * x &lt; 3 * y) (h2 : -4 * x + 2 * z &lt; 0): 12 * y - 4 * z ≥ 0 := by
   linarith
 </code></pre>

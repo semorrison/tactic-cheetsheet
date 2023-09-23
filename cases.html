@@ -212,7 +212,8 @@
 </code></pre>
 <h2 id="rcases"><a class="header" href="#rcases">rcases</a></h2>
 <p>needs: <code>import Std.Tactic.RCases</code></p>
-<p><code>rcases</code> は <code>cases</code> をパターンに従って再帰的(recursive)に適用します．論理和∨以外にも使うことができます．</p>
+<p>named after: 再帰的(recursive) cases</p>
+<p><code>rcases</code> は <code>cases</code> をパターンに従って再帰的に適用します．論理和∨以外にも使うことができます．</p>
 <pre><code class="language-lean">variable (P Q R : Prop)
 
 example : P ∨ Q → (P → R) → (Q → R) → R := by
