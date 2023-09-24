@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>induction: 帰納法 - Lean4 タクティク逆引きリスト</title>
+        <title>choose: ∀x∃yP(x,y)から写像を作る - Lean4 タクティク逆引きリスト</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Lean4 タクティク逆引きリスト</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="aesop.html">aesop: ルーチン自動化</a></li><li class="chapter-item expanded "><a href="apply.html">apply: 含意→を使う</a></li><li class="chapter-item expanded "><a href="apply_question.html">apply?: ライブラリ検索</a></li><li class="chapter-item expanded "><a href="assumption.html">assumption: 仮定をそのまま使う</a></li><li class="chapter-item expanded "><a href="by_cases.html">by_cases: 排中律</a></li><li class="chapter-item expanded "><a href="by_contra.html">by_contra: 背理法</a></li><li class="chapter-item expanded "><a href="by.html">by: タクティクモードに入る</a></li><li class="chapter-item expanded "><a href="calc.html">calc: 計算モードに入る</a></li><li class="chapter-item expanded "><a href="cases.html">cases: 論理和∨を使う</a></li><li class="chapter-item expanded "><a href="choose.html">choose: ∀x∃yP(x,y)から写像を作る</a></li><li class="chapter-item expanded "><a href="constructor.html">constructor: 論理積∧を示す</a></li><li class="chapter-item expanded "><a href="contradiction.html">contradiction: 矛盾</a></li><li class="chapter-item expanded "><a href="conv.html">conv: 変換モードに入る</a></li><li class="chapter-item expanded "><a href="convert.html">convert: 惜しい補題を使う</a></li><li class="chapter-item expanded "><a href="done.html">done: 証明終了を宣言</a></li><li class="chapter-item expanded "><a href="exact.html">exact: 証明を直接構成</a></li><li class="chapter-item expanded "><a href="exists.html">exists: 存在∃を示す</a></li><li class="chapter-item expanded "><a href="ext.html">ext: 外延性を使う</a></li><li class="chapter-item expanded "><a href="funext.html">funext: 関数等式を示す</a></li><li class="chapter-item expanded "><a href="have.html">have: 補題を用意する</a></li><li class="chapter-item expanded "><a href="induction.html" class="active">induction: 帰納法</a></li><li class="chapter-item expanded "><a href="intro.html">intro: 含意→や全称∀を示す</a></li><li class="chapter-item expanded "><a href="left_right.html">left, right: 論理和∨を示す</a></li><li class="chapter-item expanded "><a href="linarith.html">linarith: 線形不等式を示す</a></li><li class="chapter-item expanded "><a href="rel.html">rel: 不等式を使う</a></li><li class="chapter-item expanded "><a href="rfl.html">rfl: 定義そのまま</a></li><li class="chapter-item expanded "><a href="ring.html">ring: 環の等式を示す</a></li><li class="chapter-item expanded "><a href="rw.html">rw: 同値変形</a></li><li class="chapter-item expanded "><a href="show.html">show: 示すべきことを宣言</a></li><li class="chapter-item expanded "><a href="simp.html">simp: 簡約</a></li><li class="chapter-item expanded "><a href="sorry.html">sorry: 証明したことにする</a></li><li class="chapter-item expanded "><a href="suffices.html">suffices: 十分条件に帰着</a></li><li class="chapter-item expanded "><a href="trivial.html">trivial: 自明</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Lean4 タクティク逆引きリスト</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="aesop.html">aesop: ルーチン自動化</a></li><li class="chapter-item expanded "><a href="apply.html">apply: 含意→を使う</a></li><li class="chapter-item expanded "><a href="apply_question.html">apply?: ライブラリ検索</a></li><li class="chapter-item expanded "><a href="assumption.html">assumption: 仮定をそのまま使う</a></li><li class="chapter-item expanded "><a href="by_cases.html">by_cases: 排中律</a></li><li class="chapter-item expanded "><a href="by_contra.html">by_contra: 背理法</a></li><li class="chapter-item expanded "><a href="by.html">by: タクティクモードに入る</a></li><li class="chapter-item expanded "><a href="calc.html">calc: 計算モードに入る</a></li><li class="chapter-item expanded "><a href="cases.html">cases: 論理和∨を使う</a></li><li class="chapter-item expanded "><a href="choose.html" class="active">choose: ∀x∃yP(x,y)から写像を作る</a></li><li class="chapter-item expanded "><a href="constructor.html">constructor: 論理積∧を示す</a></li><li class="chapter-item expanded "><a href="contradiction.html">contradiction: 矛盾</a></li><li class="chapter-item expanded "><a href="conv.html">conv: 変換モードに入る</a></li><li class="chapter-item expanded "><a href="convert.html">convert: 惜しい補題を使う</a></li><li class="chapter-item expanded "><a href="done.html">done: 証明終了を宣言</a></li><li class="chapter-item expanded "><a href="exact.html">exact: 証明を直接構成</a></li><li class="chapter-item expanded "><a href="exists.html">exists: 存在∃を示す</a></li><li class="chapter-item expanded "><a href="ext.html">ext: 外延性を使う</a></li><li class="chapter-item expanded "><a href="funext.html">funext: 関数等式を示す</a></li><li class="chapter-item expanded "><a href="have.html">have: 補題を用意する</a></li><li class="chapter-item expanded "><a href="induction.html">induction: 帰納法</a></li><li class="chapter-item expanded "><a href="intro.html">intro: 含意→や全称∀を示す</a></li><li class="chapter-item expanded "><a href="left_right.html">left, right: 論理和∨を示す</a></li><li class="chapter-item expanded "><a href="linarith.html">linarith: 線形不等式を示す</a></li><li class="chapter-item expanded "><a href="rel.html">rel: 不等式を使う</a></li><li class="chapter-item expanded "><a href="rfl.html">rfl: 定義そのまま</a></li><li class="chapter-item expanded "><a href="ring.html">ring: 環の等式を示す</a></li><li class="chapter-item expanded "><a href="rw.html">rw: 同値変形</a></li><li class="chapter-item expanded "><a href="show.html">show: 示すべきことを宣言</a></li><li class="chapter-item expanded "><a href="simp.html">simp: 簡約</a></li><li class="chapter-item expanded "><a href="sorry.html">sorry: 証明したことにする</a></li><li class="chapter-item expanded "><a href="suffices.html">suffices: 十分条件に帰着</a></li><li class="chapter-item expanded "><a href="trivial.html">trivial: 自明</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -169,57 +169,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="induction"><a class="header" href="#induction">induction</a></h1>
-<p><code>induction</code> は，帰納法のためのタクティクです．</p>
-<p>自然数を例に説明します．Lean では自然数は次のように帰納的に定義されています.</p>
-<pre><code class="language-lean">inductive Nat
-  | zero : Nat
-  | succ (n : Nat) : Nat
-</code></pre>
-<p><code>succ</code> は後者関数と呼ばれる関数で，<code>n + 1 := succ n</code> です．</p>
-<p><code>n : Nat</code> についてゴール <code>P n ⊢ Q n</code> があったとします．このとき <code>induction n</code> を行うと，コンストラクタ <code>zero</code> と <code>succ</code> のそれぞれに対して，対応するゴールを生成します．つまり</p>
-<ul>
-<li><code>P 0 ⊢ Q 0</code></li>
-<li><code>(P (succ a)) (P a → Q a) ⊢ Q (succ a)</code></li>
-</ul>
-<p>の２つのゴールです．</p>
-<pre><code class="language-lean">-- 階乗関数
-def fac : Nat → Nat
-  | 0 =&gt; 1
-  | n + 1 =&gt; (n + 1) * fac n
+                        <h1 id="choose"><a class="header" href="#choose">choose</a></h1>
+<p>needs: <code>import Mathlib.Tactic.Choose</code></p>
+<p><code>h : ∀ x, ∃ y, P(x, y)</code> が成り立っているときに，<code>choose f hf using h</code> は写像 <code>f: X → Y</code> と <code>f</code> が満たす性質 <code>hf : ∀ x, P(x, f x)</code> のペアを作ります．</p>
+<pre><code class="language-lean">example (f : X → Y) (hf : ∀ y, ∃ x, f x = y) : ∃ g : Y → X, ∀ y, f (g y) = y := by
+  -- 写像 `g : Y → X` を構成する
+  choose g hg using hf
 
-example (n : Nat) : 0 &lt; fac n := by
-  -- `n` についての帰納法で示す
-  induction n with
-  | zero =&gt;
-    -- `fac` の定義から従う
-    simp [fac]
-  | succ n ih =&gt;
-    -- `fac` の定義から従う
-    simp [fac]
-    positivity
-</code></pre>
-<h2 id="induction-1"><a class="header" href="#induction-1">induction'</a></h2>
-<p>needs: <code>import Mathlib.Tactic.Cases</code></p>
-<p><code>induction'</code> というタクティクもあります．こちらは箇条書きによる，より簡潔な書き方が可能です．</p>
-<pre><code class="language-lean">example (n : Nat) : 0 &lt; fac n := by
-  -- `ih` は帰納法の仮定
-  -- `k` は `ih` に登場する変数
-  induction' n with k ih
-  · simp [fac]
-  · simp [fac]
-    positivity
+  -- `g` が満たす条件がローカルコンテキストに追加される
+  guard_hyp g: Y → X
+  guard_hyp hg: ∀ (y : Y), f (g y) = y
+
+  exact ⟨g, hg⟩
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="have.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="cases.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="constructor.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -229,11 +201,11 @@ example (n : Nat) : 0 &lt; fac n := by
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="have.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="cases.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="constructor.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
