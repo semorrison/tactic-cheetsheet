@@ -189,6 +189,20 @@
   -- 結合法則を使う
   rw [Nat.mul_assoc]
 </code></pre>
+<h2 id="nth_rewrite"><a class="header" href="#nth_rewrite">nth_rewrite</a></h2>
+<p>needs: <code>import Mathlib.Tactic.NthRewrite</code></p>
+<p><code>rw</code> はマッチした項をすべて置き換えてしまいます．特定の項だけを書き換えたいとき，<code>nth_rewrite</code> が使用できます．対象の式中に現れる順番を1始まりで指定することで，項を指定します．指定された順番が式中の対象の項の数よりも多い場合はエラーになります．</p>
+<pre><code class="language-lean">-- `G` は群
+variable [Group G]
+
+example (a b : G) : a * b⁻¹ = 1 ↔ a = b := by
+  -- `one_mul: 1 * b = b` を使って `b` を `1 * b` に書き換える
+  -- `b` は2回出現するが，2番目だけ置き換える
+  nth_rewrite 2 [← one_mul b]
+
+  -- `mul_inv_eq_iff_eq_mul: a * b⁻¹ = c ↔ a = c * b` を使う
+  exact mul_inv_eq_iff_eq_mul
+</code></pre>
 
                     </main>
 
