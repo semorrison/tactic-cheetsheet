@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Lean4 タクティク逆引きリスト</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -32,7 +32,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,24 +62,29 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -117,9 +122,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -399,6 +404,26 @@ example : P ∧ Q → Q ∧ P := by
 
   exact ⟨g, hg⟩
 </code></pre>
+<h2 id="補足"><a class="header" href="#補足">補足</a></h2>
+<p><code>choose</code> が自動で示してくれることは選択原理 <code>Classical.choice</code> を使って手動で示すことができます．たとえば次のようになります．</p>
+<pre><code class="language-lean">variable (P : X → Y → Prop)
+
+noncomputable example (h : ∀ x, ∃ y, P x y) : ∃ f : X → Y, ∀ x, P x (f x) := by
+  -- `f` を作る
+  let f' : (x : X) → {y // P x y} := fun x ↦
+    have hne_st : Nonempty {y // P x y} :=
+      let ⟨y, py⟩ := h x; ⟨⟨y, py⟩⟩
+    Classical.choice hne_st
+
+  let f : X → Y := fun x ↦ (f' x).val
+
+  -- 上記で作った関数が条件を満たすことを示す
+  have h₁ : ∀ x, P x (f x) := by
+    intro x
+    exact (f' x).property
+
+  exists f
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="constructor"><a class="header" href="#constructor">constructor</a></h1>
 <p>ゴールが <code>⊢ P ∧ Q</code> であるとき，<code>constructor</code> を実行すると，ゴールが２つのゴール <code>⊢ P</code> と <code>⊢ Q</code> に分割されます．</p>
 <pre><code class="language-lean">example (hP: P) (hQ: Q) : P ∧ Q := by
@@ -677,7 +702,7 @@ example (n : Nat) : 0 &lt; fac n := by
   -- `id x = x` だと教えてあげると `linarith` で示せる
   linarith
 </code></pre>
-<h2 id="補足"><a class="header" href="#補足">補足</a></h2>
+<h2 id="補足-1"><a class="header" href="#補足-1">補足</a></h2>
 <p>もう少し詳細に書くと，<code>linarith</code> は「ロールコンテキストにある線形な(不)等式系に矛盾があるか調べる」タクティクなので，次のような使い方もできます．</p>
 <pre><code class="language-lean">example (h1: x = 2 * y) (h2 : - x + 2 * y = 1) : False := by
   linarith
