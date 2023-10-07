@@ -182,11 +182,12 @@
 <li><code>suffices Q from</code> 以降では，ゴールが <code>⊢ Q</code> に書き換えられます．</li>
 </ul>
 <p><code>apply</code> と似ていますが，<code>apply</code> と違って「十分条件になっていること」の証明が明らかでないときにも使うことができます．</p>
-<pre><code class="language-lean">example (hPQ: P → Q) (hQR: Q → R) (hP: P) : R := by
-  -- `Q` を示せば十分
-  suffices Q from hQR this
+<pre><code class="language-lean">example : 13 ∣ (2 ^ 70 + 3 ^ 70) := by
+  -- 余りがゼロであることを示せば十分
+  suffices (2 ^ 70 + 3 ^ 70) % 13 = 0 from by
+    exact Iff.mpr (Nat.dvd_iff_div_mul_eq (2 ^ 70 + 3 ^ 70) 13) rfl
 
-  exact hPQ hP
+  rfl
 </code></pre>
 <p><code>suffices Q from ...</code> という形式の場合は，証明を直接構成することが必要です．<code>suffices Q from by ...</code> とすると，タクティクによって証明を構成するモードになります．</p>
 

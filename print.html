@@ -787,13 +787,13 @@ example (n : Nat) : n ≤ n := by rfl
 </ul>
 <p>それぞれ参照されます．後者は <code>@[refl]</code> が付けられた一般の関係の反射性にアクセスできず，等号 <code>=</code> の反射性しか使うことができません．</p>
 <p>後者の場合 <code>rfl</code> は，単に定義から等しいものが等しいことを示すタクティクになります．</p>
-<pre><code class="language-lean">-- 自明に正しい等式
+<pre><code class="language-lean">variable (α : Type)
+
 example : 1 + 1 = 2 := by rfl
 
--- 変数を含む等式
-example (x : Nat) : x = x := by rfl
+example (x : α) : x = x := by rfl
 
-example (P : Prop) : P = P := by rfl
+example : (2 ^ 70 + 3 ^ 70) % 13 = 0 := by rfl
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ring"><a class="header" href="#ring">ring</a></h1>
 <p>needs: <code>import Mathlib.Tactic.Ring</code></p>
@@ -915,11 +915,12 @@ theorem flt : FermatLastTheorem :=
 <li><code>suffices Q from</code> 以降では，ゴールが <code>⊢ Q</code> に書き換えられます．</li>
 </ul>
 <p><code>apply</code> と似ていますが，<code>apply</code> と違って「十分条件になっていること」の証明が明らかでないときにも使うことができます．</p>
-<pre><code class="language-lean">example (hPQ: P → Q) (hQR: Q → R) (hP: P) : R := by
-  -- `Q` を示せば十分
-  suffices Q from hQR this
+<pre><code class="language-lean">example : 13 ∣ (2 ^ 70 + 3 ^ 70) := by
+  -- 余りがゼロであることを示せば十分
+  suffices (2 ^ 70 + 3 ^ 70) % 13 = 0 from by
+    exact Iff.mpr (Nat.dvd_iff_div_mul_eq (2 ^ 70 + 3 ^ 70) 13) rfl
 
-  exact hPQ hP
+  rfl
 </code></pre>
 <p><code>suffices Q from ...</code> という形式の場合は，証明を直接構成することが必要です．<code>suffices Q from by ...</code> とすると，タクティクによって証明を構成するモードになります．</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="trivial"><a class="header" href="#trivial">trivial</a></h1>
