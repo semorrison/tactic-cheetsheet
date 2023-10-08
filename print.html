@@ -613,6 +613,27 @@ example (n : Nat) : 0 &lt; fac n := by
   · simp [fac]
     positivity
 </code></pre>
+<h2 id="強い帰納法"><a class="header" href="#強い帰納法">強い帰納法</a></h2>
+<p>時には，より強い帰納法が必要なこともあります．強い帰納法とは，たとえば</p>
+<ul>
+<li><code>P(0)</code> を示す</li>
+<li><code>(∀ k &lt; n, P (k)) → P (n)</code> を示す</li>
+<li>したがって <code>∀ n, P (n)</code> である</li>
+</ul>
+<p>という形式で表されるような帰納法のことです．これは超限帰納法の特別な場合です．これを使用するには，<code>Nat.strong_induction_on</code> を使って次のようにします．</p>
+<pre><code class="language-lean">variable (P : Nat → Prop)
+
+example (n : Nat) : P n := by
+  -- `n` についての強い帰納法で示す
+  induction' n using Nat.strong_induction_on with n ih
+
+  -- 仮定が追加される
+  guard_hyp ih : ∀ (m : ℕ), m &lt; n → P m
+
+  match n with
+  | 0 =&gt; sorry
+  | k + 1 =&gt; sorry
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="intro"><a class="header" href="#intro">intro</a></h1>
 <p>named after: 導入(introduce)</p>
 <p><code>intro</code> は数学で慣習的に行われる</p>
