@@ -185,6 +185,32 @@
 
   exact hP
 </code></pre>
+<h2 id="constructor-との関連"><a class="header" href="#constructor-との関連">constructor との関連</a></h2>
+<p><code>refine</code> は <a href="./constructor.html">constructor</a> の代わりに使うこともできます．実際 <code>refine</code> は <code>constructor</code> よりも柔軟で，<code>⊢ P ∧ Q ∧ R</code> のような形のゴールは <code>constructor</code> よりも簡潔に分割できます．</p>
+<pre><code class="language-lean">example (hP: P) (hQ: Q) (hR : R) : P ∧ Q ∧ R := by
+  -- ゴールを３つに分割する
+  refine ⟨?_, ?_, ?_⟩
+
+  · show P
+    exact hP
+  · show Q
+    exact hQ
+  · show R
+    exact hR
+
+-- `constructor` を使った場合
+-- 一度に２つのゴールに分割することしかできない
+example (hP: P) (hQ: Q) (hR : R) : P ∧ Q ∧ R := by
+  constructor
+  · show P
+    exact hP
+  · show Q ∧ R
+    constructor
+    · show Q
+      exact hQ
+    · show R
+      exact hR
+</code></pre>
 
                     </main>
 
