@@ -988,11 +988,11 @@ example (a b : G) : a * b⁻¹ = 1 ↔ a = b := by
 <pre><code class="language-lean">-- 合成 `g ∘ f` が単射なら，`f` も単射
 example {f : X → Y} {g : Y → Z} (hgfinj : Injective (g ∘ f)) : Injective f := by
   rw [Injective]
-  aesop? says {
+  aesop? says (
     intro a₁ a₂ a
     apply hgfinj
     simp_all only [comp_apply]
-  }
+  )
 </code></pre>
 <h2 id="補足-4"><a class="header" href="#補足-4">補足</a></h2>
 <p>より詳細には，検索タクティク <code>X</code> があり，その提案内容が <code>Try this: Y</code> だったとき，<code>X says</code> とすると <code>says</code> は <code>Try this: Y</code> の代わりに <code>Try this: X says Y</code> という提案を infoview 上で出します．それをクリックすると，<code>X says</code> の内容が <code>X says Y</code> で置換されます．そして，<code>X says Y</code> が実行されるときには <code>X</code> は飛ばされます．</p>
