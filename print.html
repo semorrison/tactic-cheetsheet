@@ -255,6 +255,27 @@ example [Group G] [Group H] (f : G →* H) (a b : G) :
     apply?
 </code></pre>
 <p>複数の候補が提案されたときは，どれを選ぶとゴールが何に変わるのか表示されるので，その中から好ましいものを選ぶと良いでしょう．</p>
+<h2 id="補足"><a class="header" href="#補足">補足</a></h2>
+<p><code>apply?</code> はあくまで証明を書くときに補助として使うものです．<code>sorry</code> と同じように，清書した証明に残してはいけません．</p>
+<p><code>sorry</code> と同じと言いましたが，実際 <code>apply?</code> は sorryAx <sup class="footnote-reference"><a href="#sorry">1</a></sup> を裏で使用します．これは，<code>#explode</code> で証明の中身を出力させれば分かります．<code>sorry</code> と違って警告の類が出ないので, 気を付けてください．</p>
+<pre><code class="language-lean">theorem T (x y : Nat) (h: x ≤ y) : 2 ^ x ≤ 2 ^ y := by
+    apply?
+
+    -- `apply?` しただけで `done` が通り，示せているように見える
+    done
+
+/-
+T : ∀ (x y : ℕ), x ≤ y → 2 ^ x ≤ 2 ^ y
+
+0│       │ x       ├ ℕ
+1│       │ y       ├ ℕ
+2│       │ h       ├ x ≤ y
+3│       │ sorryAx │ 2 ^ x ≤ 2 ^ y
+4│0,1,2,3│ ∀I      │ ∀ (x y : ℕ), x ≤ y → 2 ^ x ≤ 2 ^ y
+-/
+#explode T
+</code></pre>
+<p><sup class="footnote-reference"><a href="#sorry">1</a></sup> <code>sorry</code> が裏で使用している公理のこと</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="assumption"><a class="header" href="#assumption">assumption</a></h1>
 <p><code>assumption</code> は，現在のゴール <code>⊢ P</code> がローカルコンテキストにあるとき，ゴールを閉じます．</p>
 <pre><code class="language-lean">example (hP: P) (_: Q) : P := by
@@ -402,7 +423,7 @@ example : P ∧ Q → Q ∧ P := by
 
   exact ⟨g, hg⟩
 </code></pre>
-<h2 id="補足"><a class="header" href="#補足">補足</a></h2>
+<h2 id="補足-1"><a class="header" href="#補足-1">補足</a></h2>
 <p><code>choose</code> が自動で示してくれることは選択原理 <code>Classical.choice</code> を使って手動で示すことができます．たとえば次のようになります．</p>
 <pre><code class="language-lean">variable (P : X → Y → Prop)
 
@@ -731,7 +752,7 @@ example (n : Nat) : P n := by
   -- `id x = x` だと教えてあげると `linarith` で示せる
   linarith
 </code></pre>
-<h2 id="補足-1"><a class="header" href="#補足-1">補足</a></h2>
+<h2 id="補足-2"><a class="header" href="#補足-2">補足</a></h2>
 <p>もう少し詳細に書くと，<code>linarith</code> は「ロールコンテキストにある線形な(不)等式系に矛盾があるか調べる」タクティクなので，次のような使い方もできます．</p>
 <pre><code class="language-lean">example (h1: x = 2 * y) (h2 : - x + 2 * y = 1) : False := by
   linarith
@@ -877,7 +898,7 @@ example (n : ℕ) : MyEq n n := by rfl
 <pre><code class="language-lean">-- `import Mathlib.Data.Nat.Basic` が必要
 example (n : Nat) : n ≤ n := by rfl
 </code></pre>
-<h2 id="補足-2"><a class="header" href="#補足-2">補足</a></h2>
+<h2 id="補足-3"><a class="header" href="#補足-3">補足</a></h2>
 <p>実は <code>Mathlib.Tactic.Relation.Rfl</code> を import するかどうかにより，内部で呼び出されるタクティクが変わります．</p>
 <ul>
 <li><code>Mathlib.Tactic.Relation.Rfl</code> ありなら <a href="https://leanprover-community.github.io/mathlib4_docs//Mathlib/Tactic/Relation/Rfl.html#Lean.MVarId.rfl">Lean.MVarId.rfl</a> が，</li>
