@@ -191,9 +191,16 @@ example {f : X → Y} {g : Y → Z} (hgfinj : Injective (g ∘ f)) : Injective f
     apply hgfinj
     simp_all only [comp_apply]
 </code></pre>
-<h2 id="補足"><a class="header" href="#補足">補足</a></h2>
 <p>より詳細には，検索タクティク <code>X</code> があり，その提案内容が <code>Try this: Y</code> だったとき，<code>X says</code> とすると <code>says</code> は <code>Try this: Y</code> の代わりに <code>Try this: X says Y</code> という提案を infoview 上で出します．それをクリックすると，<code>X says</code> の内容が <code>X says Y</code> で置換されます．そして，<code>X says Y</code> が実行されるときには <code>X</code> は飛ばされます．</p>
-<p>なお，<code>X says Y</code> の <code>Y</code> のところに，実際には提案されていないタクティクを入れてもエラーにはなりません．したがって <code>X says Y</code> は，<code>X</code> の提案内容の中に <code>Try this: Y</code> があることを保証しません．</p>
+<h2 id="オプション"><a class="header" href="#オプション">オプション</a></h2>
+<ul>
+<li>
+<p><code>says.verify : Bool</code> : <code>true</code> にすると，<code>X says Y</code> の <code>Y</code> のところに，実際には提案されていないタクティクを入れたときにエラーになります．</p>
+</li>
+<li>
+<p><code>says.no_verify_in_CI : Bool</code> : <code>true</code> にすると，CI 環境で <code>X says Y</code> の <code>Y</code> の部分が実際に提案されている内容と一致するかのチェックが走らなくなります．</p>
+</li>
+</ul>
 
                     </main>
 
